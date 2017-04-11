@@ -1,0 +1,143 @@
+---
+title: "Modelo Gama Incompleto"
+bibliography: config/refs.bib
+csl: config/ABNT_UFPR_2011-Mendeley.csl
+---
+
+# Descrição
+
+O modelo Gama Incompleto [@Congleton-Everett1980], também conhecido como
+modelo de Wood [@Wood1967] é uma função positiva, obtida a partir da
+função densidade da distribuição Gama sem a restrição de integrar 1,
+$$
+  f(x) = \theta_{0} x^{\theta_{1}} \exp\{-\theta_{2} x\}, \quad  x > 0.
+$$
+
+Para este modelo, os parâmetros $\theta_{0} > 0$ (adimensional) é um
+parâmetro de escala da função, $\theta_{1} > 0$ (adimensional) e
+$\theta_{2} > 0$ (u.m. $\texttt{X}^{-1})$ não tem interpretação prática.
+
+A função apresenta um ponto de máximo em
+$$
+  x = \frac{\theta_1}{\theta_2} = \vartheta_x.
+$$
+
+```{r, include = FALSE, eval = FALSE}
+fx <- function(x, th0, th1, th2) {
+    th0 * (x^th1) * exp(-th2 * x)
+}
+
+library(rpanel)
+
+draw <- function(panel) {
+    with(panel, {
+        curve(fx(x, th0, th1, th2), 0, 10, asp = 1)
+        abline(v = th1/th2)
+    })
+    return(panel)
+}
+
+panel <- rp.control()
+rp.slider(panel = panel, variable = th0, from = 0.1, to = 10,
+          action = draw, showvalue = TRUE)
+rp.slider(panel = panel, variable = th1, from = 0.1, to = 10,
+          action = draw, showvalue = TRUE)
+rp.slider(panel = panel, variable = th2, from = 0.1, to = 10,
+          action = draw, showvalue = TRUE)
+```
+
+# Reparametrização
+
+Na reparametrização do modelo Gama Incompleto obtida por @zeviani-tese,
+a enfâse é dada aos parâmetros de interpretação no contexto da lactação
+animal, como medidas descritivas do ponto de máximo da curva de lactação,
+sobre a "persistência" da lactação e a produção total de leite
+$$
+\begin{align*}
+  \vartheta_x &= \frac{\theta_1}{\theta_2}, \\
+  \vartheta_y &= \theta_0 \left(\frac{\theta_1}{\theta_2}\right)^{\theta_1} \exp\{-\theta_1\},\\
+  \vartheta_p &= \theta_2^{-(\theta_1 + 1)},\\
+  \vartheta_a &= \theta_0 \theta_2^{-(\theta_1 + 1)} \Gamma(\theta_1 + 1),
+\end{align*}
+$$
+em que $\theta_x$ (u.m. $\texttt{X}$) o ponto no eixo das abcissas
+correspondente ao pico da curva de lactação $\vartheta_y$
+(u.m. $\texttt{Y}$), $\vartheta_p$ correponde ao parâmentro definido
+como persistência da lactação que tem relação com a curvatura da função
+ao redor do máximo e $\vartheta_a$ (u.m. $\texttt{XY}) é a área abaixo
+da curva de lactação que representa o total de leite produzido pela
+vaca.
+
+A parametrização que descreve o ponto de máximo é dada por
+$$
+  f(x) = \vartheta_y\left(\frac{x}{\vartheta_x}\right)^{\theta_1}
+    \exp\{\theta_1(1-x/\vartheta_x)\}
+$$
+na qual o parâmentro $\theta_1$ tem relação inversa com a curvatura ao
+redor do ponto de máximo.
+
+A parametrização com a persistência e a lactação total incluídos é dada
+por
+$$
+  f(x) = \frac{\vartheta_a}{\vartheta_p\Gamma(\theta_1+1)} x^{\theta_1}
+    \exp\{-x\vartheta_p^{-1/(\theta_1+1)}\}.
+$$
+
+@zeviani_tese descreve mais parametrizações deste modelo com uso de
+recursos númericos.
+
+```{r, include = FALSE, eval = FALSE}
+fx <- function(x, thy, th1, thx) {
+    thy * (x/thx)^th1 * exp(th1 * (1 - x/thx))
+}
+
+draw <- function(panel) {
+    with(panel, {
+        curve(fx(x, thy, th1, thx), 0, 10, asp = 1)
+        abline(v = thx, h = thy)
+    })
+    return(panel)
+}
+
+panel <- rp.control()
+rp.slider(panel = panel, variable = thx, from = 0.1, to = 10,
+          action = draw, showvalue = TRUE)
+rp.slider(panel = panel, variable = th1, from = 0.1, to = 10,
+          action = draw, showvalue = TRUE)
+rp.slider(panel = panel, variable = thy, from = 0.1, to = 10,
+          action = draw, showvalue = TRUE)
+
+fx <- function(x, tha, th1, thp) {
+    tha/(thp * gamma(th1 + 1)) * x^th1 * exp(-x * thp^(-1/(th1 + 1)))
+}
+
+draw <- function(panel) {
+    with(panel, {
+        curve(fx(x, tha, th1, thp), 0, 10, asp = 1)
+        int <- integrate(function(x) fx(x, tha, th1, thp), 0, Inf)$value
+        title(int)
+    })
+    return(panel)
+}
+
+panel <- rp.control()
+rp.slider(panel = panel, variable = tha, from = 0.1, to = 10,
+          action = draw, showvalue = TRUE)
+rp.slider(panel = panel, variable = th1, from = 0.1, to = 10,
+          action = draw, showvalue = TRUE)
+rp.slider(panel = panel, variable = thp, from = 0.1, to = 10,
+          action = draw, showvalue = TRUE)
+```
+
+# Aplicações TODO
+
+Uma outra reparametrização foi estudada por Rekaya et. al. (2001),
+incluindo o parâmetro de persistência através de um modelo não linear
+hierárquico bayesiano.
+
+Comumente, encontramos aplicações deste modelo em situações envolvendo
+curvas de lactação (produção de leite de vacas).
+
+Pode ser aplicado em substuição ao Bleasdale-Nelder.
+
+# Referências

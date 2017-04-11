@@ -1,0 +1,56 @@
+---
+title: "Modelo de Ratkowsky"
+output: html_document
+---
+
+# Descrição 
+
+  O modelo de Ratkowsky é uma parametrização alternativa do modelo
+  assintótico com a forma:
+  
+  $$ f(x) = \theta_{a} - exp\{-\theta_{b}\}\theta_{c}^x$$
+  Que passa a ser:
+  
+  $$ f(x) = \theta_{0} + \theta_{1}(1 - \theta_{c}^x)$$
+  Esta função é monótona e fléxivel, podendo ser:
+  
+  - côncava crescente, com $\theta_{c} > 0$ e $\theta_{1} > 0$;
+  - côncava decrescente, com $\theta_{c} > 0$ e $\theta_{1} < 0$;
+  - convexa crescente, com $\theta_{c} > 1$ e $\theta_{1} > 0$; 
+  - e convexa decrescente, com $ 0 < \theta_{c} > 1$ e $\theta_{1} > 0$;
+  
+  Para isso, consideramos que:
+  
+  - $x \geq 0$,
+  - $\theta_{0} (Y)$ é o intercepto,
+  - e $ \theta_{c} > 0$ e $\theta_{1}$ não são parâmetros interpretáveis. 
+
+## Aplicações
+
+  O modelo apresentado pode ser aplicado em diversas àreas. ZWIETERING,
+  M.H. (1990) et al. utilizaram a forma original e parametrizações
+  do modelo de Ratkowsky para tratar do crescimento bacteriano em função
+  da temperatura. Uma abordagem bem parecida foi usada pelo autor do 
+  modelo em 1982 (RATKOWSKY, D.A, et. al.), na modelagem de taxas de 
+  crescimento de culturas bacterianas através da avaliação de todas as 
+  temperaturas biocinéticas atingidas.  
+
+
+## Reparametrização
+
+  Uma reparametrização possível do modelo de Ratkowsky passa a incluir
+  os parâmetros $q$ e $\vartheta_{q}$, para os quais:  
+    
+  - $q > 0 (Y)$ é uma constante que representa uma redução em $\theta_{0}$
+  para a qual $\vartheta_{q} > 0 (X)$ é o valor correspondente na 
+  abcissa, ou seja, $\theta_{0} - q = f(0) - f(\vartheta_{q})$. 
+  
+  
+## Aplicações
+
+  Esta reparametrização pode ter as mesmas aplicações da do modelo
+  de Herschel-Bulkley, sendo elas a modelagem de respostas
+  assintóticas crescentes e decrescentes, a exemplo da produção em
+  função de alguma condição não natural, como adubação, irrigação, ataque
+  de pragas/doenças, ou déficit hídrico. 
+

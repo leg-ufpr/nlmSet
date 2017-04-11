@@ -1,0 +1,181 @@
+---
+title: Catálogo Web Interativo de Modelos de Regressão Não Linear 
+author:  Bruna Davies Wundervald \and Walmes Marques Zeviani
+institute: PET Estatística - Universidade Federal do Paraná
+date: Outubro de 2016
+header-includes:
+   - \title[SIEPE 2016]{Catálogo Web Interativo de Modelos de Regressão Não Linear} 
+   - \institute{Universidade Federal do Paraná}
+   - \setbeamertemplate{navigation symbols}{}
+   - \usepackage{booktabs}
+   - \usepackage[brazil]{babel}
+output: 
+  beamer_presentation:
+    colortheme: rose
+    highlight: tango
+    keep_tex: yes
+    theme: Szeged
+    fig_caption: yes
+---
+
+## Sumário
+
+\tableofcontents
+
+# Introdução
+
+***
+
+* Modelos de regressão não linear são utilizados quando 
+há um conhecimento prévio sobre a relação entre as variáveis de interesse.
+
+* Eles associam uma variável dependente com uma ou mais variáveis explicativas.
+
+* A relação funcional entre **y** e **x** ocorre através de uma função não linear nos parâmetros.
+
+* Modelos não lineares nos parâmetros podem ter uma interpretação não trivial
+(difícil visualização). 
+ 
+* Díficil reconhecer a forma da função e como os parâmetros a influenciam.
+
+# Objetivos
+
+***
+
+* **Apresentar um catálogo web interativo de modelos não lineares**. 
+
+* Possibilitar ao usuário escolher qual modelo melhor se aplica aos seus dados. 
+
+* Apresentar recursos de manipulação de modelos (gráficos), com a 
+alteração interativa de seus parâmetros. 
+
+* Introdução a materiais úteis, como a documentação histórica, propriedades
+e exemplos de aplicação dos modelos. 
+
+# Materiais e Métodos
+
+***
+* Desenvolvido com o Software de Computação Estatística R (R Core Team, 2016).
+* Shiny, ferramenta que permite a construção de aplicações para Web 
+baseadas em JavaScript
+* Disponível para acesso no servidor Shiny do LEG-UFPR.
+
+
+# O Catálogo
+
+***
+
+\includegraphics[width=\textwidth,height=1\textheight]{/home/bruna/GIT/pesqInd/prints/11.png}
+
+***
+
+\includegraphics[height = .585cm]{/home/bruna/GIT/pesqInd/prints/2.png}
+ 
+\includegraphics[width = 4cm]{/home/bruna/GIT/pesqInd/prints/3.png}
+
+\includegraphics[width=\textwidth,height=0.5\textheight]{/home/bruna/GIT/pesqInd/prints/4.png}
+
+***
+
+\vspace{-.3cm}
+\begin{columns}
+ \begin{column}{.5\textwidth}
+
+  \begin{center}
+   \includegraphics*[height = 7.5cm]{/home/bruna/GIT/pesqInd/prints/1.png}
+  \end{center}
+
+ \end{column}
+ \begin{column}{.5\textwidth}
+
+  \begin{center}
+   \includegraphics*[height = 7.5cm]{/home/bruna/GIT/pesqInd/prints/5.png}
+  \end{center}
+
+ \end{column}
+\end{columns}
+
+***
+
+\begin{columns}
+ \begin{column}{.3\textwidth}
+
+  \begin{center}
+   \includegraphics*[height = 4.5cm]{/home/bruna/GIT/pesqInd/prints/6.png}
+  \end{center}
+
+ \end{column}
+ \begin{column}{.7\textwidth}
+
+  \begin{center}
+   \includegraphics*[height = 6cm]{/home/bruna/GIT/pesqInd/prints/7.png}
+  \end{center}
+
+ \end{column}
+\end{columns}
+
+***
+
+\begin{center}
+ \includegraphics*[width = 11.25cm, height = 5.2cm]{/home/bruna/GIT/pesqInd/prints/8.png}
+\end{center}
+
+***
+
+\vspace{-.15cm}
+\begin{center}
+ \includegraphics*[width = 11.25cm, height = 6.5cm]{/home/bruna/GIT/pesqInd/prints/9.png}
+\end{center}
+
+***
+
+\vspace{-.25cm}
+\begin{center}
+ \includegraphics*[height = 7cm]{/home/bruna/GIT/pesqInd/prints/12.png}
+\end{center}
+
+# Resultados
+
+***
+
+* Melhoria geral na visualização dos modelos.
+* Disponibilização de uma coleção de visualização rápida de modelos, que
+ainda não existe sequer para as distribuições estatísticas mais comuns.
+* A interatividade permite maior compreensão e acertividade ao 
+escolher um modelo.
+* Facilitação da compreensão de como eles funcionam. 
+* Aprimoramento também da habilidade de visualizar equações que não
+estarão presentes no catálogo.
+
+
+# Pŕoximos Passos
+
+***
+
+* Apresentar o Catálogo em conferências científicas de Estatística. 
+* Construir aplicativos no mesmo formato com outros assuntos. Exemplo:
+*Catálogo de Distribuições de Probabilidade*.
+* Gerar um módulo que permita o uso do catálogo de forma *offline*.
+
+# Agradecimentos
+
+
+***
+
+* C3SL - Centro de Computação Científica de Software Livre, da UFPR, 
+pela disponibilização do GitLab. 
+* LEG - Laboratório de Estatística e Geoinformação, pela disponibilização
+do servidor Shiny. 
+
+***
+\begin{center}
+
+\Huge Obrigada pela atenção!
+
+\vspace{0.5cm}
+\includegraphics[width=.35\textwidth,height=.35\textheight]{/home/bruna/GIT/pesqInd/Pres/Prints/logo.png}
+
+\end{center}
+
+
+

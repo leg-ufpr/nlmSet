@@ -1,0 +1,7 @@
+html_document:
+  highlight: haddock
+  fig_caption: yes
+  fig_align: center
+  css: config/style.css
+  includes:
+    in_header: config/MathJax.html

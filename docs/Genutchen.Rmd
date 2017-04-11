@@ -1,0 +1,40 @@
+---
+title: "Modelo Van Genutchen Reparametrizado"
+output: html_document
+---
+
+# Descri??o
+
+  Este modelo foi tem uma fun??o sigmoidal e n?o sim?trica em rela??o ao 
+  ponto de inflex?o:
+  
+  $$ f(x) = \theta_{r} + \frac{\theta_{s} - \theta_{r}}{(1 + 
+  exp\{\theta_{a} + x\}^{\theta_{n}})^{\theta_{m}}}$$
+  
+  ? uma parametriza??o alternativa do modelo de Van Genutchen (GENUTCHEN,
+  1980), onde:
+  
+  - $\theta_{s} > 0 \ (Y)$ e $\theta_{r} > 0 \ (Y)$ representam as 
+  ass?ntotas superior e inferior,
+  - $\theta_{a} \ (X)$ est? associado ? posi??o do ponto de inflex?o,
+  - $\theta_{n} > 0 \ (X^{-1})$ e $\theta_{m} > 0$ s?o par?metros
+  sem interpreta??o pr?tica,
+  - e $x$ ? o logaritmo da tens?o matricial. 
+  
+## Aplica??es
+
+  A reparametriza??o foi pensada com o prop?sito de ser aplicada na
+  descri??o da curva de reten??o de ?gua do solo. 
+  
+## Reparametriza??o
+
+  Em ainda outra reparametriza??o, os par?metros que descrevem o ponto 
+  de inflex?o foram representados de forma que $\vartheta_{i} \ (X)$
+  seja o ponto de inflex?o, e $\vartheta_{s} \ (Y\ X^{-1})$ a taxa neste
+  ponto:
+  
+  $$ f(x) = \theta_{r} + \frac{\vartheta_{s}}{\theta_{n}} 
+  \frac{1 + (\frac{1}{\theta_{m}})^\theta_{m} + 1}
+  {(1 + \frac{exp\{\theta_{n} (x - \vartheta_{i})}
+  {\theta_{m}}\})^{\theta_{m}}}$$
+  

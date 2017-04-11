@@ -1,0 +1,32 @@
+---
+title: "Modelo de Gompertz"
+output: html_document
+---
+# Descrição
+
+  Este modelo tem uma função sigmoidal e não simétrica em relação ao 
+  ponto de inflexão:
+  
+  $$ f(x) = \theta_{a} exp\{\theta_{0} + \theta_{1} x\}$$
+  
+  Onde:
+  - $\theta_{a} \ (Y)$ é a assíntota superior do modelo,
+  - $\theta_{0}$ e $\theta_{1} \ (X^{-1})$ não tem alguma interpretação
+  direta.
+  
+## Aplicações
+
+  Algumas aplicações de processos estocásticos com atraso são encontradas
+  utilizando o modelo de Gompertz. Além disso, por ser uma curva de 
+  crescimento, temas como o aumento do tamanho de colônias bacterianas,
+  o progresso de doenças em plantas e a cinética da liberação de drogas,
+  também já foram estudados através deste modelo. 
+
+## Reparametrização 
+
+  A reparametrização deste modelo consiste na representação do tempo por
+  $\vartheta_{q} \ (X)$ para alcançar uma fração de $0 < q < 1$ do 
+  tamanho final da função: 
+  
+  $$ f(x) = \theta_{a} exp\{log(q) exp\{\theta_{0}(\frac{1-x}
+  {\vartheta_{x}})\}\}$$

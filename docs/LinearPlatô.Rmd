@@ -1,0 +1,57 @@
+---
+title: "Modelo Linear-Platô"
+output: html_document
+---
+
+# Descrição 
+
+  O modelo Linear-Platô é segmentado, sendo a união de dois segmentos de
+  reta, no qual um deles é horizontal. A função é crescente para 
+  $\theta_{1} > 0$, ou decrescente quando $\theta_{1} < 0$, para 
+  $0 < x \leq \theta_{b}$. Se $x > \theta_{b}$, a função é constante. O
+  modelo tem a forma:
+  
+\[f(x) = \left\{
+      \begin{array}{ll}
+        \theta_{0} + \theta_{1} x,\ x \geq \theta_{b} \\
+        \theta_{0} + \theta_{1} \theta_{b},\ x > \theta_{b} \\
+      \end{array}
+\right. \]
+
+  O intercepto da função é $\theta_{0}\ (Y)$ e $\theta_{1} (Y\ X^{-1})$
+  é a taxa de variação antes do ponto de quebra, $\theta_{0} > 0\ (X)$.
+  
+## Aplicações
+
+  Para o modelo Linear-Platô, SHAFII, B., et. al. (1990), utilizaram-no
+  na análise da absorção de sulfato mineral (*selenita*) por diferentes
+  tipos de solo. Uma abordagem parecida foi trabalhada por MCGEEHAN, S.
+  L., et. al. (1991), mas com arsênio. No geral, o modelo é aplicado em 
+  contextos de absorção de componentes químicos, podendo ser fertilizantes,
+  por plantas e pelo solo. 
+
+## Reparametrização
+
+  No modelo reparametrizado, $\vartheta_{b}$ agora representa o valor
+  da função no ponto de quebra $\theta_{b}$. Neste caso, $\theta_{b}$ 
+  é o máximo se $\theta_{1} > 0$, e o mínimo se $\theta_{1} < 0$:
+  
+\[f(x) = \left\{
+      \begin{array}{ll}
+        \vartheta_{b} + \theta_{1}(x - \theta_{b}),\ x \geq \theta_{b} \\
+        \vartheta_{b},\ x > \theta_{b} \\
+      \end{array}
+\right. \]
+
+## Aplicações
+
+  Este modelo reparametrizado pode ser aplicado na explicação da 
+  produção em função adubação, por exemplo. Neste contexto, $\theta_{b}$
+  é a menor dose utilizada e $\vartheta_{b}$ representa a produção máxima. 
+  A reparametrização do modelo Linear-Platô pode ser considerada para as
+  mesmas situações que as do modelo de Herschel-Bulkley. Ainda, CARNEIRO,
+  et. al. (2011) fizeram uso deste modelo para estudar o tamanho ótimo 
+  da parcela para avaliação da resistência do feijoeiro ao mofo branco, 
+  e PEIXOTO, et. al. (2011), para a conservação *in vitro* de maracujazeiro. 
+  
+  
