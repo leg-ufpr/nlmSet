@@ -15,9 +15,8 @@ explanatórias. Os modelos lineares são chamados assim porque são
 lineares em seus parâmetros, enquanto os não lineares não os são.  
 
 #### Exemplos de equações de modelos não lineares:
-- $\hat y = \beta_{0} + \beta_{1} (x +  \beta_{2})^2$
 
-- $\hat y = \beta_{0} + (1 - \exp(-\beta_{1}(x - \beta_{2})))$
+![](eq.png)
 
 Para estes modelos, a forma como os parâmetros se relacionam com a 
 função não é óbvia. Com isso, é difícil perceber se a forma destas 
