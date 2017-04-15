@@ -74,7 +74,7 @@ Sidebar {.sidebar data-width=350}
  - [Polinômio de segundo grau](#Polinômio-de-segundo-grau)
  - [Polinômio de segundo grau Reparametrizado](#Polinômio-de-segundo-grau-Reparametrizado) 
  - [Quadrático-Platô](#Quadrático-Platô)
- - [Quadrático-Platô Reparametrizado](#Quadrático-Platô Reparametrizado) 
+ - [Quadrático-Platô Reparametrizado](#Quadrático-Platô-Reparametrizado) 
  - [Bleasdale-Nelder](#Bleasdale-Nelder)
  - [Bleasdale-Nelder Reparametrizado](#Bleasdale-Nelder-Reparametrizado) 
  - [Gama Incompleto](#Gama-Incompleto)
