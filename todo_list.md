@@ -8,6 +8,7 @@
 - [Mine Cetinkaya-Rundel's Workshop](https://github.com/mine-cetinkaya-rundel/dukelib-workshop-shiny)
 - [Mine Cetinkaya-Rundel's Intro](https://github.com/mine-cetinkaya-rundel/shiny-training-css-2017-08-10)
 - [RDay Tutorial](https://github.com/williamorim/apresentacao-rday)
+- [Zev Ross Tutorial](http://zevross.com/blog/2016/04/19/r-powered-web-applications-with-shiny-a-tutorial-and-cheat-sheet-with-40-example-apps/)
 
 ## Examples
 
