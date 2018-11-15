@@ -14,7 +14,14 @@ library(markdown)
 
 #-----------------------------------------------------------------------
 
-height <- 400
+# Arguments passed to curve() in each <model>/model_server.R file.
+curve_args <- list(col = "#00a65a",
+                   lwd = 2,
+                   xlab = expression(x),
+                   ylab = expression(f(x)))
+
+height <- 500
+width <- 500
 
 shinyServer(function(input, output) {
 
@@ -22,13 +29,13 @@ shinyServer(function(input, output) {
         path_to_dir <- "Models/AsymExp"
         source(paste0(path_to_dir, "/model_server.R"),
                local = TRUE)$value
-    }, height = height) #EA
+    }, width = width, height = height) #EA
 
     output$mm <- renderPlot({
         path_to_dir <- "Models/MicMen"
         source(paste0(path_to_dir, "/model_server.R"),
                local = TRUE)$value
-    }, height = height) #MM
+    }, width = width, height = height) #MM
 
 })
 
