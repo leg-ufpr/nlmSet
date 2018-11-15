@@ -32,7 +32,7 @@ shinyServer(function(input, output){
   
   output$EA <- renderPlot({
     
-      source("Models/AsymExp/serasymexp.R", local = TRUE)$value    
+      source("Models/AsymExp/model_server.R", local = TRUE)$value    
     
   },  height = 400) #EA
   
@@ -43,7 +43,7 @@ shinyServer(function(input, output){
   
     output$mm <- renderPlot({ 
   
-      source("Models/MicMen/sermicmen.R", local = TRUE)$value
+      source("Models/MicMen/model_server.R", local = TRUE)$value
       
       
     },  height = 400) #MM
