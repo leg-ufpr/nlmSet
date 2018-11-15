@@ -1,68 +1,86 @@
 # Nonlinear Regression Models Catalogue
 
-[Augusto Calcanhoto](https://github.com/Buzzonicalcanhoto), graduating in statistic Federal University of Paraná.
+  * [Augusto Calcanhoto](https://github.com/Buzzonicalcanhoto),
+    undergraduate student of the Bachelor in Statistics at Federal
+    University of Paraná (developer).
+  * [Willian Ramos](https://github.com/willianramos12), undergraduate
+    student of the Bachelor in Statistics at Federal University of
+    Paraná (developer).
+  * [Bruna Wundervald](https://brunaw.com/), PhD student
+    at the Maynooth University (creator).
+  * [Walmes Zeviani](http://leg.ufpr.br/~walmes/),
+    lecturer at Department of Statistics at Federal University of Paraná
+    (supervisor).
 
-[Bruna Wundervald](https://gitlab.c3sl.ufpr.br/u/bdw13),
-graduate in statistic at the Federal University of Paraná.  
+## Project's Description
 
-[Willian Ramos](https://github.com/willianramos12),
-graduating in statistic Federal University of Paraná.
+Regression models, usually, are used to explain a dependent variable's
+behavior by means of one ou more explanatory variables.  This project is
+developing a R package with a Shiny interface to document and explore
+nonlinear regression models.  The model curve can be manipulated using
+sliders, so allowing the user select the most apropriate model for
+applications.
 
-[Walmes Zeviani](https://gitlab.c3sl.ufpr.br/u/walmes),
-lecturer at Department of Statistics at Federal University of Paraná.
+## Nonlinear models
 
-## Project's Description 
+A nonlinear model is when the model's parameters ($\theta$) are nonlinear
+in the expression, that is, the first derivatives of the model with
+relation to the parameters (gradient vector) depends on, at least, one
+of them. The model
+$$
+  \eta(x, \theta) = \frac{\theta_a}{\theta_h + x}
+$$
+is nonlinear on the parameters because the gradient vector
+$$
+  \frac{\partial \eta}{\partial \theta^\top} = \begin{bmatrix}
+    \dfrac{x}{\theta_h + x}\\
+    \dfrac{\theta_a x}{(\theta_h + x)^2}
+  \end{bmatrix}
+$$
+depends on the (unknown) parameters.
 
-Regression models, usually, are used to explain a dependent 
-variable's behavior by reason of one ou more explanatory variable. 
-This project is developing a R package with a Shiny interface to document 
-and explore nonlinear regression models. The model curve can be 
-manipulated using sliders, so allowing the user select the most 
-apropriate model for applications.
+How these parameters controls the behavior of the function $\eta$?
+Thats is a simple question but the answer may be depend on a lot of
+math to have it determined.  The purpose of this application is provide
+a visual way to inspect the effect of each parameter in the behavior of
+the function $\eta$. We beliave that this can simplify the process of
+choosing a nonlinear model for a particular application and also help
+the practioner unsterstand the model parameters.
 
+The following equation
+$$
+  \eta(x, \theta) = \theta_0 \exp\{-\exp\{\theta_1 (x - \theta_2) \}\},
+$$
 
-### Examples of non-linear models:
-
-$\large{\hat{y} = \beta_{0}^{} + \beta_{1}^{}(x + \beta_{2}^{})^{2}}$
-  
-$\large{\hat{y} = \beta_{0}^{} + (1 - \exp(- \beta_{1}^{}(x - \beta_{0}^{})))}$
-
-
-
-Para estes modelos, a forma como os parâmetros se relacionam com a
-função não é óbvia. Com isso, é difícil perceber se a forma destas
-funções condiz com a relaçãoentre as variáveis observadas.
-
-
-### Exemplo com curvas de um mesmo modelo variando seus parâmetros:
+is known as Gompertz growth model because its describe the growth of
+organisms and populations based on some theory.  Provided this theory,
+the parameters usually have some meaning but the effect of changing each
+one separatelly is showed on the following figure.
 
 ![](Photos/gompertz_effect.png)
 
-Com ajuda gŕafica, é mais fácil perceber como os parâmetros afetam
-as curvas da equação, como é notável na imagem acima. Assim,
-este projeto tem como objetivo apresentar um catálogo interativo de
-modelos não lineares. A ideia principal do catálogo é possibilitar ao
-usuário escolher qual modelo melhor se aplica aos seus dados.
+Based on this figure, is pretty fast to notice that
 
-O catálogo é uma aplicação *web* que usa recursos
-interativos para alterar a forma da função através dos parâmetros. O
-usuário final interage com uma página *web*, que contém:
+  * $\theta_0$ is related to the superior asymptote;
+  * $\theta_1$ is related to the rate of the function;
+  * $\theta_2$ is related to the horizontal shift;
 
-  - 1. o gráfico com a curva do modelo,
-  - 2. uma coluna com *sliders* de alteração dos parâmetros,
-e, consequentemente, da forma da curva,
-  - 3. os respectivos acessórios, como botões de acesso a
-documentação e ao código-fonte.
+This figure also give some idea about which forms this model can assume
+and, after realizing that, weather this model is appropriate to a
+particular application.
 
-A interface proposta contém materiais para cada modelo presente, aonde
-constam suas especificações, propriedades, aplicações e parametrizações
-conhecidas. São utilizados o software estatístico R, e o Shiny, para
-a construção da interface web.
+The main idea of this application is:
 
-Os resultados, em termos gerais, são uma melhora na visualização dos
-modelos, o que leva a uma compreensão mais rápida sobre como eles
-funcionam e se relacionam com seus respectivos  parâmetros.
-
-O projeto está sendo desenvolvido no LEG (Laboratório de Estatística e
-Geoinformação), da Universidade Federal do Paraná, em Curitiba.
-Sugestões de implementação, comentários e contribuições são bem vindas.
+  1. to make the function inspection process intective.
+  2. to catallogue nonlinear models because with a large collection you
+     can
+     1. have a higher chance to choose the most appropriate model.
+     2. recognize that some models are simple reparametrizations of
+        anothers.
+     3. notice that some parametrizations are more interting than others
+        because of the meaning or effects of the parameters on the
+        function.
+  3. to describe each (family of) nonlinear regression model in
+     mathematical, historical and applied aspects.
+  4. to provide some code for the R language to simulate data from
+     each model and fit them to real data.
