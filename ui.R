@@ -38,11 +38,8 @@ include_model_body <- function(path_to_dir) {
     #     \code{shortname}.
     conf <- read.dcf(paste0(path_to_dir, "/config.dcf"))
     tabItem(tabName = conf[1, "shortname"],
-            fluidPage(
-                fluidRow(
-                    source(file = paste0(path_to_dir, "/model_ui.R"),
-                           local = TRUE)$value
-                )))
+            source(file = paste0(path_to_dir, "/model_ui.R"),
+                   local = TRUE)$value)
 }
 
 #-----------------------------------------------------------------------

@@ -1,55 +1,35 @@
-#--------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------
+# OBS: run application on the brower to proper render CSS definitions.
 
-# OBS: RODAR NO NAVEGADOR PARA RENDERIZAR O CSS.
+#-----------------------------------------------------------------------
+# Nonlinear Regression Models Catalogue --------------------------------
 
+#-----------------------------------------------------------------------
+# Loads packages.
 
-# Nonlinear Regression Models Catalogue -----------------------------------
-
-## Carregando pacotes:
-
-library(shiny)  
+library(shiny)
 library(shinydashboard)
 library(ggplot2)
+library(markdown)
 
-## Comeco do codigo:
+#-----------------------------------------------------------------------
 
+height <- 400
 
-shinyServer(function(input, output){
-  
-  
-  # Exponencial Assintotica -------------------------------------------------
-  
-  #  mForm6 <- as.formula("Y ~ thetaA * (1 - exp(-theta0 *x))")
-  #  mExpr6 <- mForm6[[3]]
-  
-  #  mForm7 <- as.formula("Y ~ thetaA * (1 - exp((x * log(1 - q))
-  #                     /theta0))")
-  
-  #  mExpr7 <- mForm7[[3]]
-  
-  
-  
-  
-  output$EA <- renderPlot({
-    
-      source("Models/AsymExp/model_server.R", local = TRUE)$value    
-    
-  },  height = 400) #EA
-  
-  
+shinyServer(function(input, output) {
 
-# Michaelis-Menten --------------------------------------------------------
-  
-  
-    output$mm <- renderPlot({ 
-  
-      source("Models/MicMen/model_server.R", local = TRUE)$value
-      
-      
-    },  height = 400) #MM
-    
-    
-  
-}
+    output$EA <- renderPlot({
+        path_to_dir <- "Models/AsymExp"
+        source(paste0(path_to_dir, "/model_server.R"),
+               local = TRUE)$value
+    }, height = height) #EA
 
-)
+    output$mm <- renderPlot({
+        path_to_dir <- "Models/MicMen"
+        source(paste0(path_to_dir, "/model_server.R"),
+               local = TRUE)$value
+    }, height = height) #MM
+
+})
+
+#-----------------------------------------------------------------------
