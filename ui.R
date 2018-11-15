@@ -13,6 +13,27 @@ library(ggplot2)
 library(markdown)
 
 #-----------------------------------------------------------------------
+# Functions.
+
+include_model_sidebar <- function(path_to_dir) {
+    # @param path_to_dir character[1] Is the path to the directory with
+    #     files to build the model components on the interface.
+    #
+    # @return An object from the \code{menuSubItem()} function.
+    conf <- read.dcf(paste0(path_to_dir, "/config.dcf"))
+    menuSubItem(text = conf[1, "name"],
+                tabName = conf[1, "shortname"])
+}
+
+# tabItem(tabName = "expA",
+#                     fluidPage(
+#                         fluidRow(
+#                             source("Models/AsymExp/uiasymexp.R", local = TRUE)$value
+#                         )
+#                     )
+#                     )
+
+#-----------------------------------------------------------------------
 # Components of the user interface.
 
 # Header.
@@ -37,8 +58,8 @@ db_sidebar <-
             menuItem("Introduction", tabName = "int"),
             menuItem("Models",
                      tabName = "mod",
-                     menuSubItem("Asymptotic Exponential", tabName = "expA"),
-                     menuSubItem("Michaelis-Menten", tabName = "MM")
+                     include_model_sidebar("Models/AsymExp"),
+                     include_model_sidebar("Models/MicMen")
                      ), # menuItem
             menuItem("Contribution", tabName = "cont")
         ) # sidebarMenu
@@ -75,3 +96,5 @@ shinyUI(dashboardPage(title = "nlmSet",
                       header = db_header,
                       sidebar = db_sidebar,
                       body = db_body))
+
+#-----------------------------------------------------------------------
