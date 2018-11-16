@@ -78,4 +78,13 @@ div#refs p {
     text-align: left;
 }
 
+ul:not([class]) > li {
+    list-style: none;
+}
+ul:not([class]) > li:before {
+    content: '\25B8';
+    margin-left: -1em;
+    position: absolute;
+}
+
 /*--------------------------------------------------------------------*/
