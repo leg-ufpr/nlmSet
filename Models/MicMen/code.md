@@ -1,6 +1,6 @@
 ## Simulate data from the model
 
-```{r}
+```r
 # Values of the parameters.
 theta <- list("a" = 10, "v" = 3)
 
@@ -9,7 +9,7 @@ da <- data.frame(x = seq(from = 1, to = 10, by = 0.5))
 
 # Values of the responde variable.
 da$y <- with(theta, {
-    a * x/(v + x) + rnorm(length(x), mean = 0, sd = 0.1)
+    a * da$x/(v + da$x) + rnorm(nrow(da), mean = 0, sd = 0.1)
 })
 
 # Real curve over the observed data.
@@ -19,11 +19,11 @@ with(theta, curve(a * x/(v + x), add = TRUE, col = "#008d4c"))
 
 ## Fit the model to data
 
-```{r}
+```r
 fit <- nls(formula = y ~ a * x/(v + x),
            data = da,
            start = list(a = 10, v = 3),
-           verbose = TRUE)
+           trace = TRUE)
 summary(fit)
 
 coef(fit) # Estimated coefficients.
