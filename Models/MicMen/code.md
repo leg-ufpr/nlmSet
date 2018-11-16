@@ -1,11 +1,39 @@
-  thetaA <- input$tA
-  thetaV <- input$tV
+## Simulate data from the model
 
-  mForm1 <- as.formula("Y ~ (thetaA * x)/(thetaV  + x)")
-  mExpr1 <- mForm1[[3]]
+```{r}
+# Values of the parameters.
+theta <- list("a" = 10, "v" = 3)
 
+# Support points.
+da <- data.frame(x = seq(from = 1, to = 10, by = 0.5))
 
+# Values of the responde variable.
+da$y <- with(theta, {
+    a * x/(v + x) + rnorm(length(x), mean = 0, sd = 0.1)
+})
 
-  eval(call("curve", mExpr1, col = 2, ylab = "",
-            main = "Michaelis-Menten"
-  ))
+# Real curve over the observed data.
+plot(y ~ x, data = da)
+with(theta, curve(a * x/(v + x), add = TRUE, col = "#008d4c"))
+```
+
+## Fit the model to data
+
+```{r}
+fit <- nls(formula = y ~ a * x/(v + x),
+           data = da,
+           start = list(a = 10, v = 3),
+           verbose = TRUE)
+summary(fit)
+
+coef(fit) # Estimated coefficients.
+vcov(fit) # Covariance matrix.
+
+fitted(fit)    # Fitted values.
+residuals(fit) # Residuals.
+
+# Fitted curve over the observed data.
+plot(y ~ x, data = da)
+with(as.list(coef(fit)),
+     curve(a * x/(v + x), add = TRUE, col = "#008d4c"))
+```
