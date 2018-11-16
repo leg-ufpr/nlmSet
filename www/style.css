@@ -72,4 +72,10 @@ a:hover {
     box-shadow: inset 0 1px 1px #a9444200;
 }
 
+div#refs p {
+    text-indent: -1em;
+    margin-left: 1em;
+    text-align: left;
+}
+
 /*--------------------------------------------------------------------*/
