@@ -43,7 +43,13 @@ include_model_body <- function(path_to_dir) {
 }
 
 #-----------------------------------------------------------------------
-# Components of the user interface.
+# Elements of the user interface.
+
+# Names that are used in all models.
+tab_names <- list(plot = "Plot",
+                  doc = "Description",
+                  code = "Code",
+                  paramet = "Parametrization")
 
 # Configures MathJax font type and size.
 mathjax_config <- readLines("www/MathJax.html")
@@ -57,6 +63,9 @@ logo <- img(src = 'nlmSet.png',
             title = "nlmSet",
             height = "180px",
             style = "display: block; margin: 1em auto 1em auto;")
+
+#-----------------------------------------------------------------------
+# Parts of the user interface.
 
 # Header.
 db_header <-
