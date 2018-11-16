@@ -83,6 +83,8 @@ db_sidebar <-
     dashboardSidebar(
         # CSS.
         includeCSS("www/style.css"),
+        # Enables MathJax to render all Latex expressions.
+        withMathJax(),
         # MathJax configuration.
         mathjax_config,
         # nlmSet logo image.

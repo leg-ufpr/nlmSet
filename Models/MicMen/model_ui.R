@@ -179,8 +179,12 @@ tagList(
             ) # sidebarLayout()
         ), # tabPanel()
         tabPanel(title = tab_names$doc,
-                 withMathJax(includeMarkdown("Models/MicMen/description.md"))),
+                 if (file.exists("Models/MicMen/description.html")) {
+                     includeHTML("Models/MicMen/description.html")
+                 } else {
+                     includeMarkdown("Models/MicMen/description.md")
+                 }),
         tabPanel(title = tab_names$code,
-                 withMathJax(includeMarkdown("Models/MicMen/code.md")))
+                 includeMarkdown("Models/MicMen/code.md"))
     ) # tabsetPanel()
 ) # tagList()
