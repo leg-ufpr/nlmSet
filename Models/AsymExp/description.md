@@ -4,112 +4,65 @@ output:
 bibliography: "../../config/refs.bib"
 ---
 
-# Modelo Exponencial Assintótico
+## Description
 
-## Descrição
-
-O modelo Exponencial Assintótico, também conhecido como negativo exponencial
- <cite>[Tjorve2009][1]</cite> ou monomolecular <cite>[Box-Lucas1959][2]</cite>,
-é uma função positiva, monótona crescente e côncava, dada pela função
+The function
 $$
   f(x) = \theta_{a}(1 - \exp\{-\theta_{c}x\}), \quad x \geq 0,
 $$
-em que
+is known by several names: [exponencial decay](https://people.richland.edu/james/lecture/m116/logs/models.html),
+[asymptotic exponential](https://math.stackexchange.com/questions/1670018/how-to-fit-data-to-an-asymptotic-exponential),
+[monomolecular growth](https://help.ixellence.com/dataplore/dp_manual104.html).
 
-  * $\theta_{a} > 0$ (u.m. $\texttt{Y}$) é a assíntota da função, ou
-    seja, $\lim_{x \to \infty} f(x) = \theta_a$.
-  * $\theta_{c}$ (u.m. $\texttt{X}^{-1})$ é diretamente proporcional a
-    taxa da função na origem, $f'(0) = \theta_c \theta_a$.
+This function is positive, increasing monotonic and concave. It has two parameters
 
-## Reparametrização
+  * $\theta_{a} > 0$ ($\mathrm{y}$) is the superior asymptote, i.e.,
+    $\lim_{x \to \infty} f(x) = \theta_a$.
+  * $\theta_{c}$ ($\mathrm{x}^{-1})$ is proportional to the function
+    rate at the origin since $f'(0) = \frac{\mathrm{d} f}{\mathrm{d} x}
+    \Big |_{x = 0} = \theta_c \theta_a$.
 
-Em uma particular parametrização deste modelo, obtida por @zeviani-tese,
-substiui-se o parâmentro $\theta_c$ pelo parâmentro $\vartheta_q$
-(u.m. $\texttt{X}$) que é o valor nas abcissas correpondente a uma
-fração $q \in (0, 1)$ da assíntota, ou seja
-$$
-  f(\vartheta_q) = q \theta_a =
-    \theta_a (1 - \exp\{-\theta_c \vartheta_q\}.
-$$
+## Parametrizations
 
-Isolando-se $\theta_c$ nessa expressão, tem-se que $\theta_c =
--\log(1-q)/\vartheta_q$. Com isso, depois da substituição, o modelo
-reparametrizado é escrito como
+The function
 $$
   f(x) = \theta_{a}\left(1 - \exp\left\{\frac{x
-    \log(1 - q)}{\vartheta_q}\right\}\right)
+    \log(1 - q)}{\theta_q}\right\}\right)
 $$
-em que $q$ é um valor fixado pelo usuário. Uma escolha comum é $q =
-1/2$, onde $\vartheta_q$ é chamado de "meia vida".
-
-Simplificando ainda mais os termos dentro de modelo
+is a reparatrization obtained by replacing $\theta_c$ by $\theta_q$ [@zeviani-tese]. $q
+\in (0, 1)$ is a known variable related to the meaning of $\theta_q > 0$ ($\mathrm{x}$).
+that is
 $$
-\begin{align*}
-\exp\{-x \log(1-q)/\vartheta_q\} &=
-  \left(\text{e}^{\log(1-q)}\right)^{x/\vartheta_q} \\
- &= (1-q)^{x/\vartheta_q},
-\end{align*}
+  f(x = \theta_q) = q \theta_a = \theta_a (1 - \exp\{-\theta_c \theta_q\},
 $$
-podemos reescrever-lo como
+so, isolating $\theta_c$ gives
 $$
-  f(x) = \theta_{a} (1 - (1 - q)^{\frac{x}{\vartheta_q}}).
+  \theta_c = -\dfrac{\log(1 - q)}{\theta_q}.
 $$
 
-## Casos particulares
-
-O modelo até agora descrito parte da origem. Em muitas situações, é
-necessário a inclusão de um intercepto $\theta_0$ (u.m. $\texttt{Y}$)
-para dar mais flexibilidade ao modelo. Com isso, o modelo é
+More manipulations leads to the following final expression
 $$
-  f(x) = \theta_0 + \theta_{a} (1 - (1 - q)^{\frac{x}{\vartheta_q}}).
-$$
-
-A interpretação dos parâmetros muda. A assíntota é data por
-$$
-  \lim_{x \to infty} = \theta_0 + \theta_a
-$$
-que dá uma interpretação de complemento, ou seja, do quanto a assíntota
-está acima do intercepto. O parâmetro $\vartheta_q$ passa a ser
-$$
-  f(\vartheta_q) = \theta_0 + \frac{1}{q} \theta_a.
+\begin{aligned}
+  f(x) &= \theta_a \left(1 - \exp\left\{\dfrac{x \log(1 - q)}{\theta_q}\right\} \right ) \\
+       &= \theta_a \left(1 - \exp\left\{\log(1 - q)\right\}^{\frac{x}{\theta_q}} \right )\\
+       &= \theta_a \left(1 - (1 - q)^{\frac{x}{\theta_q}} \right )\\
+       &= \theta_a \left(1 - \left(\frac{1}{1 - q} \right)^{-\frac{x}{\theta_q}} \right ).
+\end{aligned}
 $$
 
-Com a inclusão do intercepto, o modelo pode admitir valores de $\theta_a
-< 0$ para representar curvas de decaimento também.
+If $q = 0.5$, the function becames
+$$
+  f(x) = \theta_a \left(1 - 2^{-\frac{x}{\theta_q}} \right ),
+$$
+and $\theta_q$ is the half-life period.
 
-```r
-fx <- function(x, th0, tha, thq, q) {
-    th0 + tha * (1 - (1 - q)^(x/thq))
-}
+## Extensions
 
-library(rpanel)
+The asymptotic model passes through the origin because $f(x = 0) = 0$. A
+natural extension is the inclusion of an intercept $\theta_0 \in
+\mathbb{R}$ ($\mathrm{y}$). The model equation now has three parameters,
+$$
+  f(x) = \theta_{0} + (\theta_{a} - \theta_{0})(1 - \exp\{-\theta_{c} x\}).
+$$
 
-draw <- function(panel) {
-    with(panel, {
-        curve(fx(x, th0, tha, thq, q), 0, 10, asp = 1)
-        abline(v = thq, h = th0 + q * tha)
-    })
-    return(panel)
-}
-
-panel <- rp.control(q = 0.5)
-rp.slider(panel = panel, variable = th0, from = 0, to = 2,
-          action = draw, showvalue = TRUE)
-rp.slider(panel = panel, variable = tha, from = -5, to = 5,
-          action = draw, showvalue = TRUE)
-rp.slider(panel = panel, variable = thq, from = 0, to = 5,
-          action = draw, showvalue = TRUE)
-```
-
-## Aplicações
-
-Este modelo tem aplicações semelhantes às do Michaelis-Menten. Entre
-elas, estão a explicação do comportamento da liberação de nutrientes no
-solo [@Zeviani-etal2012] e do progresso de doenças
-[@Kranz1990; @Segarra-etal2001].
-
-Além disso, em (BASSANEZI et al. TODO) o modelo exponencial assintótico
-foi utilizado para a previsão de recordes na Olímpiada de Pequim e em
-estudos sobre os índices de criminalidade no ABCD paulista.
-
-## Referências
+## References
