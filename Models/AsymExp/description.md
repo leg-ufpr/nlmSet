@@ -1,5 +1,10 @@
-# Modelo Exponencial Assintótico
+---
+output:
+  html_fragment
+bibliography: "../../config/refs.bib"
+---
 
+# Modelo Exponencial Assintótico
 
 ## Descrição
 
@@ -72,7 +77,7 @@ $$
 Com a inclusão do intercepto, o modelo pode admitir valores de $\theta_a
 < 0$ para representar curvas de decaimento também.
 
-```{r, include = FALSE, eval = FALSE}
+```r
 fx <- function(x, th0, tha, thq, q) {
     th0 + tha * (1 - (1 - q)^(x/thq))
 }
@@ -108,5 +113,3 @@ foi utilizado para a previsão de recordes na Olímpiada de Pequim e em
 estudos sobre os índices de criminalidade no ABCD paulista.
 
 ## Referências
-
-

@@ -1,3 +1,9 @@
+---
+output:
+  html_fragment
+bibliography: "../../config/refs.bib"
+---
+
 # Michaelis-Menten
 
 ## Descrição
@@ -32,7 +38,7 @@ bacteriófagos, a relação entre fotossíntese e irradiância, etc.
 
 Em reações enzimáticas, temos que $x$ é a concentração do substrato, $\theta_{a}$
   é a taxa máxima atingida pelo sistema na saturação máxima de $x$, e a constante
-$\theta_{v}$ é o valor de $x$ em que a taxa de reação é metade de $\theta_{a}$.  
+$\theta_{v}$ é o valor de $x$ em que a taxa de reação é metade de $\theta_{a}$.
 
 
 ## Primeira Reparametrização
@@ -57,7 +63,7 @@ Zeviani et al. (2012) consideraram este modelo em estudos sobre a liberação de
 potássio no solo a partir de fontes orgânicas incubadas em latossolos.
 
 
-## Segunda Reparametrização  
+## Segunda Reparametrização
 
 
 Como uma segunda opção para o modelo Michaelis-Menten, Zeviani et al
@@ -79,7 +85,7 @@ produção de gases em ruminantes (Groot et al.(1996)) e no estudo do
 crescimento de bactérias em relação ao tempo (Becker et al. (2007)).
 
 
-## Terceira Reparametrização  
+## Terceira Reparametrização
 
 
 A terceira reparametrização deste modelo, proposta por Zeviani et al
@@ -99,7 +105,7 @@ tem o seguinte formato:
   $$f(x) = \frac{\theta_{a}x}{1+\frac{1-q}{q}(\frac{x}{\vartheta_{q}})^{\theta_{c}}}$$
 
 
-## Quarta Reparametrização    
+## Quarta Reparametrização
 
   A adição do parâmetro $\theta_{c}$ ao modelo original Michaelis-Menten
 o faz tomar o formato conhecido por modelo de Hill (HILL, 1913):
@@ -128,4 +134,3 @@ acontece quando já existem outros ligandos na macromolécula, o que
 também é conhecido como cooperativismo dos ligantes
 (outro nome para "ligando"). Goutelle et al. (2008) discorrem sobre mais propriedades
 do modelo de Hill.
-
