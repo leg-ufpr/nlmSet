@@ -29,13 +29,13 @@ shinyServer(function(input, output) {
         path_to_dir <- "Models/AsymExp"
         source(paste0(path_to_dir, "/model_server.R"),
                local = TRUE)$value
-    }, width = width, height = height) #EA
+    }) #EA
 
     output$mm <- renderPlot({
         path_to_dir <- "Models/MicMen"
         source(paste0(path_to_dir, "/model_server.R"),
                local = TRUE)$value
-    }, width = width, height = height) #MM
+    }) #MM
 
 })
 

@@ -3,11 +3,13 @@ tabBox(
     title = "Asymptotic Exponential",
     # Usar o mesmo nome do diretório.
     id = "AsymExp",
-    width = 12,
+    width = 9,
+    height = 600,
     tabPanel(
         title = "Plot",
         sidebarLayout(
             sidebarPanel(
+                width = 4,
                 selectInput(
                     # paramet_<modelo>.
                     inputId = "paramet_AsymExp",
@@ -66,7 +68,8 @@ tabBox(
             ), # sidebarPanel()
             #-----------------------------------------------------------
             mainPanel(
-                plotOutput(outputId = "EA", height = 400)
+                plotOutput(outputId = "EA"),
+                width = 5
             )
         ) # sidebarLayout()
     ), # tabPanel()
