@@ -23,6 +23,7 @@ curve_args <- list(col = "#00a65a",
 height <- 500
 width <- 500
 
+# options(warn = 2, shiny.error = recover)
 shinyServer(function(input, output) {
 
     output$EA <- renderPlot({

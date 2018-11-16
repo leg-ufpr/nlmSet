@@ -98,7 +98,7 @@ db_sidebar <-
                      tabName = "models"), # menuItem
             menuItem(text = "Contribution",
                      tabName = "contribution")
-        ) # sidebarMenu
+        ) # sidebarMenu()
     )
 
 # Main area.
@@ -113,7 +113,7 @@ db_body <-
             include_model_body("Models/MicMen"),
             tabItem(tabName = "contribution",
                     includeMarkdown("contribuition.md"))
-        ) # tabItems
+        ) # tabItems()
     )
 
 # Call each component.
