@@ -3,6 +3,22 @@ This file defines modifications in the default `shinydashboard`
 template.
 ----------------------------------------------------------------------*/
 
+a {
+    color: #008d4c;
+}
+
+a:hover {
+    color: #00a65a;
+}
+
+.selectize-input.focus {
+    border-color: #008d4c;
+}
+
+.content-wrapper {
+    background-color: #ffffff;
+}
+
 .irs-bar {
     height: 8px;
     top: 25px;
