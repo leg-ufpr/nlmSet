@@ -45,6 +45,19 @@ include_model_body <- function(path_to_dir) {
 #-----------------------------------------------------------------------
 # Components of the user interface.
 
+# Configures MathJax font type and size.
+mathjax_config <- readLines("www/MathJax.html")
+mathjax_config <- paste0(head(mathjax_config[-1], -1),
+                         collapse = "\n")
+mathjax_config <-
+    tags$head(tags$script(type = "text/x-mathjax-config",
+                          HTML(mathjax_config)))
+
+logo <- img(src = 'nlmSet.png',
+            title = "nlmSet",
+            height = "180px",
+            style = "display: block; margin: 1em auto 1em auto;")
+
 # Header.
 db_header <-
     dashboardHeader(
@@ -59,8 +72,12 @@ db_header <-
 # Sidebar menu.
 db_sidebar <-
     dashboardSidebar(
-        # CSS and HTML.
-        tags$style(includeCSS("style.css")),
+        # CSS.
+        includeCSS("www/style.css"),
+        # MathJax configuration.
+        mathjax_config,
+        # nlmSet logo image.
+        logo,
         # Tab panels.
         sidebarMenu(
             id = "tabs",
