@@ -9,8 +9,6 @@
 
 library(shiny)
 library(shinydashboard)
-library(ggplot2)
-library(markdown)
 
 #-----------------------------------------------------------------------
 # Render */description.md do */description.html. The HTML version
