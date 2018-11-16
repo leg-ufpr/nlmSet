@@ -1,0 +1,62 @@
+# Emacs ----------------------------------------------------------------
+.#*
+*~
+#*
+
+# General --------------------------------------------------------------
+README.html
+CONTRIBUTING.html
+STYLEGUIDE.html
+*.Rcheck/
+
+# R backup files -------------------------------------------------------
+.Rproj.user
+.Rhistory
+.RData
+*.Rout
+
+## Files in Models/*/
+description.html
+
+# Rnw/Rmd output files -------------------------------------------------
+**/*_cache/*
+**/*_files/*
+**/figure/*
+*.nav
+*.snm
+*.tex
+*.vrb
+
+# Core latex/pdflatex auxiliary files ----------------------------------
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+
+# Intermediate documents -----------------------------------------------
+*.dvi
+*-converted-to.*
+
+# Build tool auxiliary files -------------------------------------------
+*.fdb_latexmk
+*.synctex
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# Bibliography auxiliary files (bibtex/biblatex/biber) -----------------
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.brf
+
+#-----------------------------------------------------------------------
