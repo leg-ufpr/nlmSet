@@ -16,6 +16,7 @@ tagList(
                     #-------------------------------------------------------
                     conditionalPanel(
                         condition = "input.paramet_AsymExp == 'Asymptotic Exponential'",
+                        tags$p("$$f(x) = \\theta_{a}(1 - \\exp\\{-\\theta_{c}x\\})$$"),
                         sliderInput(
                             inputId = "tA",
                             HTML("$$\\theta_a$$"),
@@ -30,8 +31,9 @@ tagList(
                             min = 0,
                             max = 1,
                             value = 0.5,
-                            animate = animationOptions(interval = 800, loop = TRUE)
-                        )
+                            animate = animationOptions(interval = 800, loop = TRUE),
+                            ),
+                        check()
                     ), # conditionalPanel()
                     #-------------------------------------------------------
                     conditionalPanel(

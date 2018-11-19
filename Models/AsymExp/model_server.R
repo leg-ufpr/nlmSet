@@ -18,6 +18,17 @@ switch (input$paramet_AsymExp,
                   lwd = curve_args$lwd,
                   xlab = curve_args$xlab,
                   ylab = curve_args$ylab)
+            if (input$check) {
+                cols <- c("Asymptote" = "orange",
+                          "Initial rate" = "purple")
+                abline(h = input$tA, lty = 2, col = cols[1])
+                abline(a = 0, b = input$tA * input$t0, lty = 2, col = cols[2])
+                legend("bottomright",
+                       legend = names(cols),
+                       col = cols,
+                       lty = 2,
+                       bty = "n")
+            }
         },
         "Asymptotic Exponential Reparametrized" = {
             curve(expr = input$tA_1*(1 - exp((x * log(1 - input$q_1))/input$t0_1)),

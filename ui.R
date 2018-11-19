@@ -65,6 +65,12 @@ logo <- img(src = 'nlmSet.png',
 #-----------------------------------------------------------------------
 # Parts of the user interface.
 
+check <- function() {
+    checkboxInput(inputId = "check",
+                  label = "Dysplay auxiliary lines?",
+                  value = FALSE)
+}
+
 # Header.
 db_header <-
     dashboardHeader(
