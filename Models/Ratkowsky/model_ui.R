@@ -1,6 +1,6 @@
 tagList(
     # Usar o que estiver definido como nome no `config.dcf`.
-    tags$h1("Asymptotic Exponential"),
+    tags$h1("Ratkowsky"),
     tabsetPanel(
         tabPanel(
             title = tab_names$plot,
@@ -9,38 +9,54 @@ tagList(
                     width = 4,
                     selectInput(
                         # paramet_<modelo>.
-                        inputId = "paramet_AsymExp",
+                        inputId = "paramet_Ratk",
                         label = tab_names$paramet,
-                        choices = c("Asymptotic Exponential",
-                                    "Asymptotic Exponential Reparametrized")),
+                        choices = c("Ratkowsky",
+                                    "Ratkowsky Reparametrized")),
                     #-------------------------------------------------------
                     conditionalPanel(
-                        condition = "input.paramet_AsymExp == 'Asymptotic Exponential'",
-                        tags$p("$$f(x) = \\theta_{a}(1 - \\exp\\{-\\theta_{c}x\\})$$"),
+                        condition = "input.paramet_Ratk == 'Ratkowsky'",
+                        tags$p("$$f(x) = \\theta_{0} - q (\\frac{1 - \\theta_{c}^{x}}{1 - \\theta_{c}^{\\vartheta_{q}}})$$"),
                         sliderInput(
-                            inputId = "AE_tA",
-                            HTML("$$\\theta_a$$"),
-                            min = 0,
-                            max = 10,
-                            value = 8,
+                            inputId = "RA_t0",
+                            HTML("$$\\theta_{0}$$"),
+                            min = -5,
+                            max = 5,
+                            value = 4,
                             animate = animationOptions(interval = 1000, loop = TRUE)
                         ),
                         sliderInput(
-                            inputId = "AE_t0",
-                            HTML("$$\\theta_0$$"),
+                            inputId = "RA_tC",
+                            HTML("$$\\theta_{c}$$"),
+                            min = 0,
+                            max = 100,
+                            value = 30,
+                            animate = animationOptions(interval = 800, loop = TRUE)
+                        ),
+                        sliderInput(
+                            inputId = "RA_vT",
+                            HTML("$$\\vartheta_{q}$$"),
+                            min = 0,
+                            max = 10,
+                            value = 5,
+                            animate = animationOptions(interval = 800, loop = TRUE)
+                        ),
+                        sliderInput(
+                            inputId = "RA_Q",
+                            HTML("$$q$$"),
                             min = 0,
                             max = 1,
                             value = 0.5,
                             animate = animationOptions(interval = 800, loop = TRUE)
-                        ),
-                        check()
+                        )
+                        
                     ), # conditionalPanel()
                     #-------------------------------------------------------
                     conditionalPanel(
-                        condition = "input.paramet_AsymExp == 'Asymptotic Exponential Reparametrized'",
+                        condition = "input.paramet_Ratk == 'Ratkowsky Reparametrized'",
                         tags$p("$$f(x) = \\theta_{a}(1 - \\exp\\{\\frac{x \\log(1 - q)}{\\theta_0}\\})$$"),
                         sliderInput(
-                            inputId = "AER_tA",
+                            inputId = "RAR_tA",
                             HTML("$$\\theta_{a}$$"),
                             min = 0,
                             max = 10,
@@ -48,7 +64,7 @@ tagList(
                             animate = animationOptions(interval = 1000, loop = TRUE)
                         ),
                         sliderInput(
-                            inputId = "AER_t0",
+                            inputId = "RAR_t0",
                             HTML("$$\\theta_{0}$$"),
                             min = 0,
                             max = 1,
@@ -56,7 +72,7 @@ tagList(
                             animate = animationOptions(interval = 1000, loop = TRUE)
                         ),
                         sliderInput(
-                            inputId = "AER_Q",
+                            inputId = "RAR_Q",
                             HTML("$$q$$"),
                             min = 0,
                             max = 1,
@@ -67,18 +83,18 @@ tagList(
                 ), # sidebarPanel()
                 #-----------------------------------------------------------
                 mainPanel(
-                    plotOutput(outputId = "EA"),
+                    plotOutput(outputId = "RATK"),
                     width = 5
                 )
             ) # sidebarLayout()
         ), # tabPanel()
         tabPanel(title = tab_names$doc,
-                 if (file.exists("Models/AsymExp/description.html")) {
-                     includeHTML("Models/AsymExp/description.html")
+                 if (file.exists("Models/Ratkowsky/description.html")) {
+                     includeHTML("Models/Ratkowsky/description.html")
                  } else {
-                     includeMarkdown("Models/AsymExp/description.md")
+                     includeMarkdown("Models/Ratkowsky/description.md")
                  }),
         tabPanel(title = tab_names$code,
-                 includeMarkdown("Models/AsymExp/code.md"))
+                 includeMarkdown("Models/Ratkowsky/code.md"))
     ) # tabsetPanel()
 ) # tagList()

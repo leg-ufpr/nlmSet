@@ -11,23 +11,22 @@ tagList(
                         label = tab_names$paramet,
                         choices = c("Michaelis-Menten",
                                     "Michaelis-Menten Reparametrization",
-                                    "Extention Michaelis-Menten 1",
-                                    "Extention Michaelis-Menten 2",
-                                    "Extention Michaelis-Menten 3")),
+                                    "Extention Michaelis-Menten 1")),
                     # Michaelis-Menten -------------------------------------
                     conditionalPanel(
                         condition = "input.paramet_MM == 'Michaelis-Menten'",
+                        tags$p("$$f(x) = \\frac{\\theta_{a} x}{\\theta_{v} + x}$$"),
                         sliderInput(
-                            inputId = "tA_0",
-                            min = -10,
+                            inputId = "MM_tA",
+                            min = 0,
                             max = 10,
-                            value = 1,
+                            value = 7,
                             step = 0.5,
                             HTML("$$\\theta_{a}$$"),
                             animate = animationOptions(interval = 1000, loop = TRUE)
                         ),
                         sliderInput(
-                            inputId = "tV_0",
+                            inputId = "MM_tV",
                             min = 0,
                             max = 1,
                             value = 0.5,
@@ -38,15 +37,16 @@ tagList(
                     # Michaelis-Menten Reparametrization ---------------
                     conditionalPanel(
                         condition = "input.paramet_MM == 'Michaelis-Menten Reparametrization'",
+                        tags$p("$$f(x) = \\frac{\\theta_{a}x}{\\theta_{v}(\\frac{1-q}{q})+x}$$"),
                         sliderInput(
-                            inputId = "tA_1",
+                            inputId = "MMR_tA",
                             HTML("$$ \\theta_{a} $$"),
-                            min = -10,
+                            min = 0,
                             max = 10,
-                            value = 2,
+                            value = 7,
                             animate = animationOptions(interval = 1000, loop = TRUE)),
                         sliderInput(
-                            inputId = "tV_1",
+                            inputId = "MMR_tV",
                             HTML("$$\\theta_{v}$$"),
                             min = 0,
                             max = 1,
@@ -54,7 +54,7 @@ tagList(
                             step = 0.05,
                             animate = animationOptions(interval = 1000, loop = TRUE)),
                         sliderInput(
-                            inputId = "q_1",
+                            inputId = "MMR_Q",
                             HTML("$$q$$"),
                             min = 0,
                             max = 1,
@@ -62,55 +62,20 @@ tagList(
                             step = 0.05,
                             animate = animationOptions(interval = 1000, loop = TRUE))
                     ),
-                    # Extention Michaelis-Menten -----------------------
+                    # Extention Michaelis-Menten 1 ---------------------
                     conditionalPanel(
-                        condition = "input.paramet_MM == 'Extention Michaelis-Menten 1' ",
+                        condition = "input.paramet_MM == 'Extention Michaelis-Menten 1'",
+                        tags$p("$$f(x) = \\frac{\\theta_{a} x^{\\theta_{c}}}{\\theta_{v} (\\frac{1-q}{q}) + x^{\\theta_c}} $$"),
                         sliderInput(
-                            inputId = "tA_2",
+                            inputId = "EMM_tA",
                             HTML("$$\\theta_{a}$$"),
-                            min = -10,
-                            max = 10,
-                            value = 1,
-                            step = 0.05,
-                            animate = animationOptions(interval = 1000, loop = TRUE)),
-                        sliderInput(
-                            inputId = "tV_2",
-                            HTML("$$\\theta_{v}$$"),
-                            min = 1,
-                            max = 10,
-                            value = 1,
-                            step = 0.05,
-                            animate = animationOptions(interval = 1000, loop = TRUE)),
-                        sliderInput(
-                            inputId = "q_2",
-                            HTML("$$q$$"),
                             min = 0,
-                            max = 1,
-                            value = 0.5,
+                            max = 10,
+                            value = 7,
                             step = 0.05,
                             animate = animationOptions(interval = 1000, loop = TRUE)),
                         sliderInput(
-                            inputId = "tC_2",
-                            HTML("$$\\theta_{c}$$"),
-                            min = -10,
-                            max = 10,
-                            value = 1,
-                            step = 0.05,
-                            animate = animationOptions(interval = 1000, loop = TRUE))
-                    ),
-                    # Extention Michaelis-Menten 2 ---------------------
-                    conditionalPanel(
-                        condition = "input.paramet_MM == 'Extention Michaelis-Menten 2'",
-                        sliderInput(
-                            inputId = "tA_3",
-                            HTML("$$\\theta_{a}$$"),
-                            min = -10,
-                            max = 10,
-                            value = 1,
-                            step = 0.05,
-                            animate = animationOptions(interval = 1000, loop = TRUE)),
-                        sliderInput(
-                            "tV_3",
+                            inputId = "EMM_tV",
                             HTML("$$\\theta_{v}$$"),
                             min = 0,
                             max = 1,
@@ -118,7 +83,7 @@ tagList(
                             step = 0.05,
                             animate = animationOptions(interval = 1000, loop = TRUE)),
                         sliderInput(
-                            inputId = "q_3",
+                            inputId = "EMM_Q",
                             HTML("$$q$$"),
                             min = 0,
                             max = 1,
@@ -126,45 +91,9 @@ tagList(
                             step = 0.05,
                             animate = animationOptions(interval = 1000, loop = TRUE)),
                         sliderInput(
-                            inputId = "tC_3",
+                            inputId = "EMM_tC",
                             HTML("$$\\theta_{c}$$"),
-                            min = -10,
-                            max = 10,
-                            value = 1,
-                            step = 0.05,
-                            animate = animationOptions(interval = 1000, loop = TRUE))
-                    ),
-                    # Extention Michaelis-Menten 3 ---------------------
-                    conditionalPanel(
-                        condition = "input.paramet_MM == 'Extention Michaelis-Menten 3'",
-                        sliderInput(
-                            inputId = "tA_4",
-                            HTML("$$\\theta_{a}$$"),
-                            min = -10,
-                            max = 10,
-                            value = 1,
-                            step = 0.05,
-                            animate = animationOptions(interval = 1000, loop = TRUE)),
-                        sliderInput(
-                            inputId = "tV_4",
-                            HTML("$$\\theta_{v}$$"),
                             min = 0,
-                            max = 1,
-                            value = 0.5,
-                            step = 0.05,
-                            animate = animationOptions(interval = 1000, loop = TRUE)),
-                        sliderInput(
-                            inputId = "q_4",
-                            HTML("$$q$$"),
-                            min = 0,
-                            max = 1,
-                            value = 0.5,
-                            step = 0.05,
-                            animate = animationOptions(interval = 1000, loop = TRUE)),
-                        sliderInput(
-                            inputId = "tC_4",
-                            HTML("$$\\theta_{c}$$"),
-                            min = -10,
                             max = 10,
                             value = 1,
                             step = 0.05,
@@ -173,7 +102,7 @@ tagList(
                 ),
                 #-------------------------------------------------------
                 mainPanel(
-                    plotOutput(outputId = "mm"),
+                    plotOutput(outputId = "MM"),
                     width = 5
                 ) # mainPanel()
             ) # sidebarLayout()

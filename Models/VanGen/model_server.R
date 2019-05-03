@@ -1,4 +1,4 @@
-# Asymptotic Exponential -----------------------------------------------
+# Van Genutchen -----------------------------------------------
 
 # NOTE: for some unknown reason, Shiny does not work with
 # `do.call(curve, ...)` ou defining a function `my_curve()` that calls
@@ -9,31 +9,18 @@
 
 # ATTENTION: the list `curve_args` is kept in the ../../server.R file.
 
-switch (input$paramet_AsymExp,
-        "Asymptotic Exponential" = {
-            curve(expr = input$AE_tA * (1 - exp(-input$AE_t0 * x)),
+switch (input$paramet_VanGen,
+        "Van Genutchen" = {
+            curve(expr = input$VG_tR + ((input$VG_tS - input$VG_tR)/((1 + exp(input$VG_tA + x)^input$VG_tN)^input$VG_tM)),
                   xlim = c(0, 10),
-                  ylim = c(0, 10),
                   col = curve_args$col,
                   lwd = curve_args$lwd,
                   xlab = curve_args$xlab,
                   ylab = curve_args$ylab)
-            if (input$check) {
-                cols <- c("Asymptote" = "orange",
-                          "Initial rate" = "purple")
-                abline(h = input$AE_tA, lty = 2, col = cols[1])
-                abline(a = 0, b = input$AE_tA * input$AE_t0, lty = 2, col = cols[2])
-                legend("bottomright",
-                       legend = names(cols),
-                       col = cols,
-                       lty = 2,
-                       bty = "n")
-            }
         },
-        "Asymptotic Exponential Reparametrized" = {
-            curve(expr = input$AER_tA * (1 - exp((x * log(1 - input$AER_Q))/input$AER_t0)),
+        "Van Genutchen Reparametrized" = {
+            curve(expr = input$VGR_tR - ((input$VGR_vS * ((1 + input$VGR_tM)^(input$VGR_tM + 1)))/(input$VGR_tN * (1 + (exp(input$VGR_tN * (x - input$VGR_vI)))/(input$VGR_tM))^(input$VGR_tM))),
                   xlim = c(0, 10),
-                  ylim = c(0, 10),
                   col = curve_args$col,
                   lwd = curve_args$lwd,
                   xlab = curve_args$xlab,

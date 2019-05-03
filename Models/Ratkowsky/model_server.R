@@ -1,4 +1,4 @@
-# Asymptotic Exponential -----------------------------------------------
+# Ratkowsky ---------------------------------------------------------------
 
 # NOTE: for some unknown reason, Shiny does not work with
 # `do.call(curve, ...)` ou defining a function `my_curve()` that calls
@@ -9,29 +9,18 @@
 
 # ATTENTION: the list `curve_args` is kept in the ../../server.R file.
 
-switch (input$paramet_AsymExp,
-        "Asymptotic Exponential" = {
-            curve(expr = input$AE_tA * (1 - exp(-input$AE_t0 * x)),
-                  xlim = c(0, 10),
-                  ylim = c(0, 10),
+switch (input$paramet_Ratk,
+        "Ratkowsky" = {
+            curve(expr = input$RA_t0 - (input$RA_Q * (1 - (input$RA_tC^x))/(1 - (input$RA_tC^input$RA_vT))) ,
+                  xlim = c(0,10),
+                  ylim = c(-5, 5),
                   col = curve_args$col,
                   lwd = curve_args$lwd,
                   xlab = curve_args$xlab,
                   ylab = curve_args$ylab)
-            if (input$check) {
-                cols <- c("Asymptote" = "orange",
-                          "Initial rate" = "purple")
-                abline(h = input$AE_tA, lty = 2, col = cols[1])
-                abline(a = 0, b = input$AE_tA * input$AE_t0, lty = 2, col = cols[2])
-                legend("bottomright",
-                       legend = names(cols),
-                       col = cols,
-                       lty = 2,
-                       bty = "n")
-            }
         },
-        "Asymptotic Exponential Reparametrized" = {
-            curve(expr = input$AER_tA * (1 - exp((x * log(1 - input$AER_Q))/input$AER_t0)),
+        "Ratkowsky Reparametrized" = {
+            curve(expr = input$RAR_tA * (1 - exp((x * log(1 - input$RAR_Q))/input$RAR_t0)),
                   xlim = c(0, 10),
                   ylim = c(0, 10),
                   col = curve_args$col,

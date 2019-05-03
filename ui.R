@@ -71,11 +71,16 @@ check <- function() {
                   value = FALSE)
 }
 
+check1 <- function() {
+    checkboxInput(inputId = "check1",
+                  label = "Dysplay auxiliary lines?",
+                  value = FALSE)
+}
+
 # Header.
 db_header <-
     dashboardHeader(
         title = "nlmSet",
-        titleWidth = 229.41,
         tags$li(class = "dropdown",
                 tags$a(href = "https://github.com/leg-ufpr/nlmSet",
                        icon("github"),
@@ -97,13 +102,24 @@ db_sidebar <-
         sidebarMenu(
             id = "tabs",
             menuItem(text = "Introduction",
-                     tabName = "introduction"),
+                     tabName = "introduction",
+                     icon = icon("fas fa-users")),
             menuItem(text = "Models",
                      include_model_sidebar("Models/AsymExp"),
+                     include_model_sidebar("Models/BleNel"),
+                     include_model_sidebar("Models/Gompertz"),
+                     include_model_sidebar("Models/HerBul"),
+                     include_model_sidebar("Models/IncGamma"),
+                     include_model_sidebar("Models/Logistic"),
                      include_model_sidebar("Models/MicMen"),
-                     tabName = "models"), # menuItem
+                     include_model_sidebar("Models/Mitscherlich"),
+                     include_model_sidebar("Models/Ratkowsky"),
+                     include_model_sidebar("Models/VanGen"),
+                     tabName = "models",
+                     icon = icon("fas fa-chart-area")), # menuItem
             menuItem(text = "Contribution",
-                     tabName = "contribution")
+                     tabName = "contribution",
+                     icon = icon("fas fa-book"))
         ) # sidebarMenu()
     )
 
@@ -117,6 +133,15 @@ db_body <-
             # Models.
             include_model_body("Models/AsymExp"),
             include_model_body("Models/MicMen"),
+            include_model_body("Models/Mitscherlich"),
+            include_model_body("Models/HerBul"),
+            include_model_body("Models/Ratkowsky"),
+            include_model_body("Models/Gompertz"),
+            include_model_body("Models/VanGen"),
+            include_model_body("Models/IncGamma"),
+            include_model_body("Models/Logistic"),
+            include_model_body("Models/BleNel"),
+
             tabItem(tabName = "contribution",
                     includeMarkdown("contribuition.md"))
         ) # tabItems()

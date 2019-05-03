@@ -1,6 +1,6 @@
 tagList(
     # Usar o que estiver definido como nome no `config.dcf`.
-    tags$h1("Asymptotic Exponential"),
+    tags$h1("Incomplete Gamma"),
     tabsetPanel(
         tabPanel(
             title = tab_names$plot,
@@ -9,76 +9,84 @@ tagList(
                     width = 4,
                     selectInput(
                         # paramet_<modelo>.
-                        inputId = "paramet_AsymExp",
+                        inputId = "paramet_IncGamma",
                         label = tab_names$paramet,
-                        choices = c("Asymptotic Exponential",
-                                    "Asymptotic Exponential Reparametrized")),
+                        choices = c("Incomplete Gamma",
+                                    "Incomplete Gamma Reparametrized")),
                     #-------------------------------------------------------
                     conditionalPanel(
-                        condition = "input.paramet_AsymExp == 'Asymptotic Exponential'",
-                        tags$p("$$f(x) = \\theta_{a}(1 - \\exp\\{-\\theta_{c}x\\})$$"),
+                        condition = "input.paramet_IncGamma == 'Incomplete Gamma'",
+                        tags$p("$$f(x) = \\theta_{0} x^{\\theta_{1}} \\exp\\{-\\theta_{2}x\\}$$"),
                         sliderInput(
-                            inputId = "AE_tA",
-                            HTML("$$\\theta_a$$"),
+                            inputId = "IG_t0",
+                            HTML("$$\\theta_0$$"),
                             min = 0,
                             max = 10,
                             value = 8,
                             animate = animationOptions(interval = 1000, loop = TRUE)
                         ),
                         sliderInput(
-                            inputId = "AE_t0",
-                            HTML("$$\\theta_0$$"),
+                            inputId = "IG_t1",
+                            HTML("$$\\theta_1$$"),
                             min = 0,
-                            max = 1,
-                            value = 0.5,
+                            max = 10,
+                            value = 5,
                             animate = animationOptions(interval = 800, loop = TRUE)
                         ),
-                        check()
+                        sliderInput(
+                          inputId = "IG_t2",
+                          HTML("$$\\theta_2$$"),
+                          min = 0,
+                          max = 10,
+                          value = 5,
+                          animate = animationOptions(interval = 800, loop = TRUE)
+                        )
+                        
                     ), # conditionalPanel()
                     #-------------------------------------------------------
                     conditionalPanel(
-                        condition = "input.paramet_AsymExp == 'Asymptotic Exponential Reparametrized'",
-                        tags$p("$$f(x) = \\theta_{a}(1 - \\exp\\{\\frac{x \\log(1 - q)}{\\theta_0}\\})$$"),
+                        condition = "input.paramet_IncGamma == 'Incomplete Gamma Reparametrized'",
+                        tags$p("$$f(x) = \\vartheta_{y} \\frac{x^{\\theta_{1}} }{\\vartheta_{x}} \\exp\\{\\theta_{1}(1 - \\frac{x}{\\vartheta_{x}})\\}$$"),
                         sliderInput(
-                            inputId = "AER_tA",
-                            HTML("$$\\theta_{a}$$"),
-                            min = 0,
+                            inputId = "IGR_t1",
+                            HTML("$$\\theta_{1}$$"),
+                            min = -5,
                             max = 10,
                             value = 9,
                             animate = animationOptions(interval = 1000, loop = TRUE)
                         ),
                         sliderInput(
-                            inputId = "AER_t0",
-                            HTML("$$\\theta_{0}$$"),
+                            inputId = "IGR_vX",
+                            HTML("$$\\vartheta_{x}$$"),
                             min = 0,
-                            max = 1,
-                            value = 0.5,
+                            max = 15,
+                            value = 5,
                             animate = animationOptions(interval = 1000, loop = TRUE)
                         ),
                         sliderInput(
-                            inputId = "AER_Q",
-                            HTML("$$q$$"),
+                            inputId = "IGR_vY",
+                            HTML("$$\\vartheta_{y}$$"),
                             min = 0,
-                            max = 1,
-                            value = 0.5,
+                            max = 15,
+                            value = 5,
                             animate = animationOptions(interval = 1000, loop = TRUE)
                         )
                     ) # conditionalPanel()
                 ), # sidebarPanel()
                 #-----------------------------------------------------------
                 mainPanel(
-                    plotOutput(outputId = "EA"),
+                    plotOutput(outputId = "INCG"),
                     width = 5
                 )
             ) # sidebarLayout()
         ), # tabPanel()
         tabPanel(title = tab_names$doc,
-                 if (file.exists("Models/AsymExp/description.html")) {
-                     includeHTML("Models/AsymExp/description.html")
+                 if (file.exists("Models/IncGamma/description.html")) {
+                     includeHTML("Models/IncGamma/description.html")
                  } else {
-                     includeMarkdown("Models/AsymExp/description.md")
+                     includeMarkdown("Models/IncGamma/description.md")
                  }),
         tabPanel(title = tab_names$code,
-                 includeMarkdown("Models/AsymExp/code.md"))
+                 includeMarkdown("Models/IncGamma/code.md"))
     ) # tabsetPanel()
 ) # tagList()

@@ -55,12 +55,60 @@ shinyServer(function(input, output) {
                local = TRUE)$value
     }) #EA
 
-    output$mm <- renderPlot({
+    output$MM <- renderPlot({
         path_to_dir <- "Models/MicMen"
         source(paste0(path_to_dir, "/model_server.R"),
                local = TRUE)$value
     }) #MM
+    
+    output$MITS <- renderPlot({
+        path_to_dir <- "Models/Mitscherlich"
+        source(paste0(path_to_dir, "/model_server.R"),
+               local = TRUE)$value
+    }) #Mits
+    
+    output$HERB <- renderPlot({
+        path_to_dir <- "Models/HerBul"
+        source(paste0(path_to_dir, "/model_server.R"),
+               local = TRUE)$value
+    }) #HB
+    
+    output$RATK <- renderPlot({
+        path_to_dir <- "Models/Ratkowsky"
+        source(paste0(path_to_dir, "/model_server.R"),
+               local = TRUE)$value
+    }) #Ratk
+    
+    output$GOMP <- renderPlot({
+      path_to_dir <- "Models/Gompertz"
+      source(paste0(path_to_dir, "/model_server.R"),
+             local = TRUE)$value
+    }) #Gomp
 
+    output$VANG <- renderPlot({
+      path_to_dir <- "Models/VanGen"
+      source(paste0(path_to_dir, "/model_server.R"),
+             local = TRUE)$value
+    }) #Vang
+    
+    output$INCG <- renderPlot({
+      path_to_dir <- "Models/IncGamma"
+      source(paste0(path_to_dir, "/model_server.R"),
+             local = TRUE)$value
+    }) #Incg
+    
+    output$LOGI <- renderPlot({
+      path_to_dir <- "Models/Logistic"
+      source(paste0(path_to_dir, "/model_server.R"),
+             local = TRUE)$value
+    }) #Logi
+    
+    output$BLEA <- renderPlot({
+      path_to_dir <- "Models/BleNel"
+      source(paste0(path_to_dir, "/model_server.R"),
+             local = TRUE)$value
+    }) #BleNel
+    
 })
 
 #-----------------------------------------------------------------------

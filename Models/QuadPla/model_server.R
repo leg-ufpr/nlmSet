@@ -9,8 +9,8 @@
 
 # ATTENTION: the list `curve_args` is kept in the ../../server.R file.
 
-switch (input$paramet_AsymExp,
-        "Asymptotic Exponential" = {
+switch (input$paramet_QuadPla,
+        "Quadratic Plateau" = {
             curve(expr = input$AE_tA * (1 - exp(-input$AE_t0 * x)),
                   xlim = c(0, 10),
                   ylim = c(0, 10),
@@ -18,19 +18,8 @@ switch (input$paramet_AsymExp,
                   lwd = curve_args$lwd,
                   xlab = curve_args$xlab,
                   ylab = curve_args$ylab)
-            if (input$check) {
-                cols <- c("Asymptote" = "orange",
-                          "Initial rate" = "purple")
-                abline(h = input$AE_tA, lty = 2, col = cols[1])
-                abline(a = 0, b = input$AE_tA * input$AE_t0, lty = 2, col = cols[2])
-                legend("bottomright",
-                       legend = names(cols),
-                       col = cols,
-                       lty = 2,
-                       bty = "n")
-            }
         },
-        "Asymptotic Exponential Reparametrized" = {
+        "Quadratic Plateau Reparametrized" = {
             curve(expr = input$AER_tA * (1 - exp((x * log(1 - input$AER_Q))/input$AER_t0)),
                   xlim = c(0, 10),
                   ylim = c(0, 10),
