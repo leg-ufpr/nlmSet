@@ -11,34 +11,14 @@ library(shiny)
 library(shinydashboard)
 
 #-----------------------------------------------------------------------
-# Defines functions.
+# Get the properties of nonlinear models to use in filter widget.
 
-include_model_sidebar <- function(path_to_dir) {
-    # @param path_to_dir character[1] Is the path to the directory with
-    #     files to build the model components on the interface.
-    #
-    # @return An object from the \code{menuSubItem()} function.
-    #
-    # @details The \code{DCF} should have two fiels: \code{name} and
-    #     \code{shortname}.
-    conf <- read.dcf(paste0(path_to_dir, "/config.dcf"))
-    menuSubItem(text = conf[1, "name"],
-                tabName = conf[1, "shortname"])
-}
-
-include_model_body <- function(path_to_dir) {
-    # @param path_to_dir character[1] Is the path to the directory with
-    #     files to build the model components on the interface.
-    #
-    # @return An object from the \code{tabItem()} function.
-    #
-    # @details The \code{DCF} should have two fiels: \code{name} and
-    #     \code{shortname}.
-    conf <- read.dcf(paste0(path_to_dir, "/config.dcf"))
-    tabItem(tabName = conf[1, "shortname"],
-            source(file = paste0(path_to_dir, "/model_ui.R"),
-                   local = TRUE)$value)
-}
+fls <- paste0(dir("Models", full.names = TRUE), "/config.dcf")
+prop <- sapply(fls, read.dcf, fields = "properties")
+prop <- sapply(strsplit(prop, ","), trimws)
+all_prop <- c(na.exclude(do.call(c, prop)))
+names(all_prop) <- NULL
+all_prop
 
 #-----------------------------------------------------------------------
 # Elements of the user interface.
@@ -61,6 +41,22 @@ logo <- img(src = 'nlmSet.png',
             title = "nlmSet",
             height = "180px",
             style = "display: block; margin: 1em auto 1em auto;")
+
+#-----------------------------------------------------------------------
+
+include_model_body <- function(model_dir) {
+    # @param model_dir character[1] Is the path to the directory with
+    #     files to build the model components on the interface.
+    #
+    # @return An object from the \code{tabItem()} function.
+    #
+    # @details The \code{DCF} should have two fiels: \code{name} and
+    #     \code{shortname}.
+    conf <- read.dcf(paste0("Models/", model_dir, "/config.dcf"))
+    tabItem(tabName = conf[1, "shortname"],
+            source(file = paste0("Models/", model_dir, "/model_ui.R"),
+                   local = TRUE)$value)
+}
 
 #-----------------------------------------------------------------------
 # Parts of the user interface.
@@ -101,25 +97,30 @@ db_sidebar <-
         # Tab panels.
         sidebarMenu(
             id = "tabs",
+            # menuItem(text = "TESTS",
+            #          tabName = "TESTS",
+            #          icon = icon("fas fa-users")),
             menuItem(text = "Introduction",
                      tabName = "introduction",
                      icon = icon("fas fa-users")),
-            menuItem(text = "Models",
-                     include_model_sidebar("Models/AsymExp"),
-                     include_model_sidebar("Models/BleNel"),
-                     include_model_sidebar("Models/Gompertz"),
-                     include_model_sidebar("Models/HerBul"),
-                     include_model_sidebar("Models/IncGamma"),
-                     include_model_sidebar("Models/Logistic"),
-                     include_model_sidebar("Models/MicMen"),
-                     include_model_sidebar("Models/Mitscherlich"),
-                     include_model_sidebar("Models/Ratkowsky"),
-                     include_model_sidebar("Models/VanGen"),
-                     tabName = "models",
-                     icon = icon("fas fa-chart-area")), # menuItem
             menuItem(text = "Contribution",
                      tabName = "contribution",
-                     icon = icon("fas fa-book"))
+                     icon = icon("fas fa-book")),
+            menuItemOutput(outputId = "list_of_models"),
+            menuItem(text = "Filter",
+                     tabName = "filter",
+                     icon = icon("fas fa-filter"),
+                     # startExpanded = TRUE,
+                     selectInput(inputId = "model_filters",
+                                 label = "Filter on properties:",
+                                 choices = all_prop,
+                                 multiple = TRUE,
+                                 selectize = TRUE),
+                     radioButtons(inputId = "set_operation",
+                                  label = "Set operation",
+                                  choices = c("Any", "All"),
+                                  selected = "Any",
+                                  inline = TRUE))
         ) # sidebarMenu()
     )
 
@@ -127,20 +128,22 @@ db_sidebar <-
 db_body <-
     dashboardBody(
         tabItems(
+            # tabItem(tabName = "TESTS",
+            #         verbatimTextOutput("my_tests")),
             # Introduction.
             tabItem(tabName = "introduction",
                     includeMarkdown("README.md")),
             # Models.
-            include_model_body("Models/AsymExp"),
-            include_model_body("Models/MicMen"),
-            include_model_body("Models/Mitscherlich"),
-            include_model_body("Models/HerBul"),
-            include_model_body("Models/Ratkowsky"),
-            include_model_body("Models/Gompertz"),
-            include_model_body("Models/VanGen"),
-            include_model_body("Models/IncGamma"),
-            include_model_body("Models/Logistic"),
-            include_model_body("Models/BleNel"),
+            include_model_body("AsymExp"),
+            include_model_body("MicMen"),
+            include_model_body("Mitscherlich"),
+            include_model_body("HerBul"),
+            include_model_body("Ratkowsky"),
+            include_model_body("Gompertz"),
+            include_model_body("VanGen"),
+            include_model_body("IncGamma"),
+            include_model_body("Logistic"),
+            include_model_body("BleNel"),
 
             tabItem(tabName = "contribution",
                     includeMarkdown("contribuition.md"))
