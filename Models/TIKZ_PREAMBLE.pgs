@@ -1,0 +1,36 @@
+\documentclass[border = 1mm]{standalone}
+
+% This file is to be used as template in Ktikz to create *.png/*.pdf
+% files from *.pgf ones.
+
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{palatino}
+% \usepackage{eulervm}
+
+% Don't `empheq'.
+\usepackage{ifthen}
+\usepackage{amsfonts, amssymb, amsxtra, amsmath, amsbsy}
+\usepackage{xcolor}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+\usetikzlibrary{
+  arrows,
+  positioning,
+  matrix,
+  calc,
+  fit}
+
+% Main color of the project.
+\definecolor{nlmSetColor}{HTML}{008762}
+
+\pagestyle{empty}
+
+\begin{document}
+% \noindent
+<>
+\end{document}

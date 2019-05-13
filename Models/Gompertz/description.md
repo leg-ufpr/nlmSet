@@ -21,3 +21,5 @@ This function is positive and have a sigmoidal format. It has three parameters:
       \Big |_{x = 0} = \frac{\theta_0}{\theta_1}$.
 
   * $\theta_{1} > 0$ is the growth rate.
+
+![](gompertz_1.png)

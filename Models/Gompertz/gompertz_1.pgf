@@ -1,0 +1,58 @@
+% IMPORTANT: enable shell escape.
+\begin{tikzpicture}[%
+  > = latex',
+  xscale = 2,
+  yscale = 2,
+  drawplot/.style = {color = nlmSetColor, very thick, smooth, samples = 100},
+  plotfun/.style = {id = x, domain = 0:1.6}
+  ]%
+
+  % Model equation
+  \def\modeleqn{
+    $f(x) = \theta_0 \exp\{-\exp\{\theta_1 (x - \theta_2)\}\} $
+  }
+
+  % Model parameter values.
+  \def\thetaA{1}
+  \def\thetaC{4}
+  \def\thetaI{0.6}
+
+  % Vertical and horizontal axis.
+  \def\axes{
+    \draw[->] (-0.1,0) -- +(1.8,0);
+    \draw[->] (0,-0.1) -- +(0,1.4);
+  }
+
+  \begin{scope}[local bounding box = scope1]
+    \axes
+    \foreach \a in {0, 1, 2}{
+      \draw[drawplot] plot[plotfun]
+        function {(\thetaA - \a/5.0) * exp(-exp(-\thetaC * (x - \thetaI)))};
+      }
+    \draw[->] (1.5, 0.4) -- +(0, 0.8) node[above] {$\theta_0$};
+  \end{scope}
+
+  \begin{scope}[local bounding box = scope2, xshift = 2cm]
+    \axes
+    \foreach \c in {0, 1, 2}{
+      \draw[drawplot] plot[plotfun]
+        function{\thetaA * exp(-exp(-(\thetaC - \c/1.0) * (x - \thetaI)))};
+    }
+    \draw[->] (0.8, 0.37) arc (0:280:0.2) node[right] {$\theta_1$};
+  \end{scope}
+
+  \begin{scope}[local bounding box = scope3, xshift = 4cm]
+    \axes
+    \foreach \i in {0, 1, 2}{
+      \draw[drawplot] plot[plotfun]
+        function{\thetaA * exp(-exp(-\thetaC * (x - (\thetaI + \i/5.0))))};
+    }
+    \draw[->] (0.4, 0.5) -- +(1, 0) node[right] {$\theta_2$};
+  \end{scope}
+
+  % Model equation at center.
+  \node (bbox) [
+    label = {[yshift = 1ex] north:{\modeleqn}},
+    fit = (scope1)(scope2)(scope3)] {};
+
+\end{tikzpicture}%
