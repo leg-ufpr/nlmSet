@@ -13,7 +13,7 @@ library(shinydashboard)
 #-----------------------------------------------------------------------
 # Get the properties of nonlinear models to use in filter widget.
 
-fls <- paste0(dir("Models", full.names = TRUE), "/config.dcf")
+fls <- paste0(list.dirs("Models", recursive = FALSE), "/config.dcf")
 prop <- sapply(fls, read.dcf, fields = "properties")
 prop <- sapply(strsplit(prop, ","), trimws)
 all_prop <- c(na.exclude(do.call(c, prop)))

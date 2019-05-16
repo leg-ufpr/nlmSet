@@ -91,8 +91,6 @@ include_model_sidebar <- function(model_dir,
 
 #-----------------------------------------------------------------------
 
-dir("Models")
-
 # options(warn = 2, shiny.error = recover)
 shinyServer(function(input, output, session) {
 
