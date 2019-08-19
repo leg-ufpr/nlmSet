@@ -136,6 +136,8 @@ db_body <-
             # Models.
             include_model_body("AsymExp"),
             include_model_body("MicMen"),
+            include_model_body("LinPla"),
+            include_model_body("QuadPla"),
             include_model_body("Mitscherlich"),
             include_model_body("HerBul"),
             include_model_body("Ratkowsky"),

@@ -106,6 +106,8 @@ shinyServer(function(input, output, session) {
                  include_model_sidebar("IncGamma"    , input$model_filters, input$set_operation),
                  include_model_sidebar("Logistic"    , input$model_filters, input$set_operation),
                  include_model_sidebar("MicMen"      , input$model_filters, input$set_operation),
+                 include_model_sidebar("LinPla"      , input$model_filters, input$set_operation),
+                 include_model_sidebar("QuadPla"      , input$model_filters, input$set_operation),
                  include_model_sidebar("Mitscherlich", input$model_filters, input$set_operation),
                  include_model_sidebar("Ratkowsky"   , input$model_filters, input$set_operation),
                  include_model_sidebar("VanGen"      , input$model_filters, input$set_operation),
@@ -130,6 +132,18 @@ shinyServer(function(input, output, session) {
         source(paste0(path_to_dir, "/model_server.R"),
                local = TRUE)$value
     }) #MM
+
+    output$LP <- renderPlot({
+        path_to_dir <- "Models/LinPla"
+        source(paste0(path_to_dir, "/model_server.R"),
+               local = TRUE)$value
+    }) #LP
+
+    output$QP <- renderPlot({
+        path_to_dir <- "Models/QuadPla"
+        source(paste0(path_to_dir, "/model_server.R"),
+               local = TRUE)$value
+    }) #QP
 
     output$MITS <- renderPlot({
         path_to_dir <- "Models/Mitscherlich"
