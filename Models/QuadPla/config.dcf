@@ -1,2 +1,3 @@
 name: Quadratic Plateau
 shortname: QuadPla
+properties: segmented, linear
